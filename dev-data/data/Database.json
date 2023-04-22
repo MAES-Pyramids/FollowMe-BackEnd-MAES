@@ -1,0 +1,187 @@
+[
+  {
+    "id": 0,
+    "name": "Mango Margaritas",
+    "source_url": "http://thepioneerwoman.com/cooking/2012/08/mango-margaritas/",
+    "image_url": "http://forkify-api.herokuapp.com/images/mango21df.jpg",
+    "ingredients": [
+      {
+        "quantity": 2,
+        "unit": "",
+        "description": "whole limes"
+      },
+      {
+        "quantity": 2,
+        "unit": "tbsps",
+        "description": "coarse sugar"
+      },
+      {
+        "quantity": 2,
+        "unit": "",
+        "description": "jars mango chunks drained"
+      },
+      {
+        "quantity": 1.5,
+        "unit": "cups",
+        "description": "tequila"
+      },
+      {
+        "quantity": 1.5,
+        "unit": "cups",
+        "description": "triple sec"
+      },
+      {
+        "quantity": 0.25,
+        "unit": "cup",
+        "description": "sugar"
+      }
+    ],
+    "servings": 4,
+    "cooking_time": 30
+  },
+  {
+    "id": "5ed6604591c37cdc054bcc53",
+    "name": "Salisbury Steak",
+    "source_url": "http://thepioneerwoman.com/cooking/2012/03/salisbury-steak-mashed-potatoes-and-peas/",
+    "image_url": "http://forkify-api.herokuapp.com/images/plate315ad0.jpg",
+    "ingredients": [
+      {
+        "quantity": null,
+        "unit": "",
+        "description": "Meat mixture"
+      },
+      {
+        "quantity": 1.5,
+        "unit": "pounds",
+        "description": "lean ground beef"
+      },
+      {
+        "quantity": 0.5,
+        "unit": "cup",
+        "description": "seasoned breadcrumbs"
+      },
+      {
+        "quantity": 2,
+        "unit": "tsps",
+        "description": "dry mustard"
+      },
+      {
+        "quantity": 1,
+        "unit": "",
+        "description": "cube beef bouillon crumbed"
+      },
+      {
+        "quantity": 4,
+        "unit": "",
+        "description": "dashes worcestershire sauce"
+      },
+      {
+        "quantity": 1,
+        "unit": "tbsp",
+        "description": "ketchup"
+      },
+      {
+        "quantity": null,
+        "unit": "",
+        "description": "Salt and pepper"
+      },
+      {
+        "quantity": null,
+        "unit": "",
+        "description": "Gravy"
+      },
+      {
+        "quantity": 1,
+        "unit": "",
+        "description": "whole onion halved and thinly sliced"
+      },
+      {
+        "quantity": 2,
+        "unit": "cups",
+        "description": "beef broth"
+      },
+      {
+        "quantity": 4,
+        "unit": "",
+        "description": "dashes worcestershire"
+      },
+      {
+        "quantity": 1,
+        "unit": "tbsp",
+        "description": "ketchup"
+      },
+      {
+        "quantity": 1,
+        "unit": "tsp",
+        "description": "kitchen bouquet"
+      },
+      {
+        "quantity": 1,
+        "unit": "tsp",
+        "description": "corn starch mixed with a little beef broth to make a thin paste"
+      },
+      {
+        "quantity": null,
+        "unit": "",
+        "description": "Salt and pepper to taste"
+      },
+      {
+        "quantity": null,
+        "unit": "",
+        "description": "More broth if needed for thinning"
+      },
+      {
+        "quantity": null,
+        "unit": "",
+        "description": "Mashed potatoes for serving"
+      },
+      {
+        "quantity": null,
+        "unit": "",
+        "description": "Buttered peas for serving"
+      },
+      {
+        "quantity": 1,
+        "unit": "tbsp",
+        "description": "olive oil for frying"
+      },
+      {
+        "quantity": 1,
+        "unit": "tbsp",
+        "description": "butter for frying"
+      },
+      {
+        "quantity": 5,
+        "unit": "pounds",
+        "description": "russet or yukon gold potatoes"
+      },
+      {
+        "quantity": 0.75,
+        "unit": "cup",
+        "description": "butter"
+      },
+      {
+        "quantity": 1,
+        "unit": "",
+        "description": "package cream cheese softened"
+      },
+      {
+        "quantity": 0.5,
+        "unit": "cup",
+        "description": "half-and-half"
+      },
+      {
+        "quantity": 0.5,
+        "unit": "tsp",
+        "description": "lawry's seasoned salt"
+      },
+      {
+        "quantity": 0.5,
+        "unit": "tsp",
+        "description": "black pepper"
+      }
+    ],
+    "servings": 4,
+    "cooking_time": 135
+  }
+]
