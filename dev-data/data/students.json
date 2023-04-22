@@ -1,0 +1,104 @@
+[
+  {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Jane Doe",
+    "email": "janedoe@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Bob Johnson",
+    "email": "bobjohnson@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Alice Johnson",
+    "email": "alicejohnson@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Mark Lee",
+    "email": "marklee@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Erica Brown",
+    "email": "ericabrown@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Tiffany Davis",
+    "email": "tiffanydavis@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Peter Wilson",
+    "email": "peterwilson@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "David Smith",
+    "email": "davidsmith@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Jessica Lee",
+    "email": "jessicalee@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Ryan Kim",
+    "email": "ryankim@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Karen Park",
+    "email": "karenpark@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "William Lee",
+    "email": "williamlee@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Hannah Kim",
+    "email": "hannahkim@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Brandon Kim",
+    "email": "brandonkim@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Olivia Chen",
+    "email": "oliviachen@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "name": "Jonathan Chen",
+    "email": "jonathanchen@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123"
+  }
+]

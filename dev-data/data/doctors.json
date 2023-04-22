@@ -1,0 +1,34 @@
+[
+  {
+    "_id": "61187f3e3bfbb539f54be772",
+    "name": "Dr. John Smith",
+    "email": "john.smith@example.com",
+    "maxStudents": 5,
+    "password": "password123",
+    "passwordConfirm": "password123"
+  },
+  {
+    "_id": "61187f3e3bfbb539f54be773",
+    "name": "Dr. Sarah Lee",
+    "email": "sarah.lee@example.com",
+    "maxStudents": 4,
+    "password": "password456",
+    "passwordConfirm": "password456"
+  },
+  {
+    "_id": "61187f3e3bfbb539f54be774",
+    "name": "Dr. Michael Johnson",
+    "email": "michael.johnson@example.com",
+    "maxStudents": 3,
+    "password": "password789",
+    "passwordConfirm": "password789"
+  },
+  {
+    "_id": "61187f3e3bfbb539f54be775",
+    "name": "Dr. Emily Davis",
+    "email": "emily.davis@example.com",
+    "maxStudents": 5,
+    "password": "password123",
+    "passwordConfirm": "password123"
+  }
+]

@@ -1,39 +1,33 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-// const crypto = require('crypto');
-// const bcrypt = require('bcryptjs');
 //-------------------Schema----------------//
-const studentSchema = new mongoose.Schema(
+const doctorSchema = new mongoose.Schema(
   {
     name: {
-      type: 'string',
-      required: [true, 'A user must have a name']
+      type: String,
+      required: [true, 'A doctor must have a name']
     },
     email: {
-      type: 'string',
-      required: [true, 'A user must have an email'],
+      type: String,
+      required: [true, 'A doctor must have an email'],
       unique: true,
       lowercase: true,
       validate: [validator.isEmail, 'Please provide a valid email']
     },
-    photo: {
-      type: 'string',
-      default: 'default.jpg'
-    },
-    role: {
-      type: String,
-      enum: ['normal', 'second'],
-      default: 'normal'
+    maxStudents: {
+      type: Number,
+      required: [true, 'A doctor must have a maximum number of students'],
+      min: 1
     },
     password: {
-      type: 'string',
-      required: [true, 'A user must have a password'],
+      type: String,
+      required: [true, 'A doctor must have a password'],
       minlength: 8,
       select: false
     },
     passwordConfirm: {
-      type: 'string',
-      required: [true, 'A user must have a password confirmation'],
+      type: String,
+      required: [true, 'A doctor must have a password confirmation'],
       // This only works on CREATE and SAVE!!!
       validate: {
         validator: function(el) {
@@ -52,10 +46,6 @@ const studentSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
       select: false
-    },
-    doctor: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Doctor'
     }
   },
   {
@@ -63,9 +53,7 @@ const studentSchema = new mongoose.Schema(
     toObject: { virtuals: true }
   }
 );
-//-------------------Virtuals----------------//
-
 //--------------------Model------------------//
-const Student = mongoose.model('Student', studentSchema);
+const Doctor = mongoose.model('Doctor', doctorSchema);
 //--------------------Export-----------------//
-module.exports = Student;
+module.exports = Doctor;
