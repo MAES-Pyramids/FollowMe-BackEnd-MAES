@@ -63,7 +63,14 @@ const studentSchema = new mongoose.Schema(
     toObject: { virtuals: true }
   }
 );
-//-------------------Virtuals----------------//
+//-------------Queries middleware------------//
+studentSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'doctor',
+    select: '-passwordConfirm -maxStudents'
+  });
+  next();
+});
 
 //--------------------Model------------------//
 const Student = mongoose.model('Student', studentSchema);

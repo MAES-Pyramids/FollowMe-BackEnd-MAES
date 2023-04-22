@@ -1,101 +1,134 @@
 [
   {
+    "id": 1,
     "name": "John Doe",
     "email": "johndoe@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be772"
   },
   {
+    "id": 2,
     "name": "Jane Doe",
     "email": "janedoe@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be772"
   },
   {
+    "id": 3,
     "name": "Bob Johnson",
     "email": "bobjohnson@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be772"
   },
   {
+    "id": 4,
     "name": "Alice Johnson",
     "email": "alicejohnson@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be772"
   },
   {
+    "id": 5,
     "name": "Mark Lee",
     "email": "marklee@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be772"
   },
   {
+    "id": 6,
     "name": "Erica Brown",
     "email": "ericabrown@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be773"
   },
   {
+    "id": 7,
     "name": "Tiffany Davis",
     "email": "tiffanydavis@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be773"
   },
   {
+    "id": 8,
     "name": "Peter Wilson",
     "email": "peterwilson@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be773"
   },
   {
+    "id": 9,
     "name": "David Smith",
     "email": "davidsmith@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be773"
   },
   {
+    "id": 10,
     "name": "Jessica Lee",
     "email": "jessicalee@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be774"
   },
   {
+    "id": 11,
     "name": "Ryan Kim",
     "email": "ryankim@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be774"
   },
   {
+    "id": 12,
     "name": "Karen Park",
     "email": "karenpark@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be774"
   },
   {
+    "id": 13,
     "name": "William Lee",
     "email": "williamlee@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be775"
   },
   {
+    "id": 14,
     "name": "Hannah Kim",
     "email": "hannahkim@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be775"
   },
   {
+    "id": 15,
     "name": "Brandon Kim",
     "email": "brandonkim@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be775"
   },
   {
+    "id": 16,
     "name": "Olivia Chen",
     "email": "oliviachen@example.com",
     "password": "password123",
-    "passwordConfirm": "password123"
+    "passwordConfirm": "password123",
+    "doctor": "61187f3e3bfbb539f54be775"
   },
   {
+    "id": 17,
     "name": "Jonathan Chen",
     "email": "jonathanchen@example.com",
     "password": "password123",
