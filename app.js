@@ -1,20 +1,17 @@
 const morgan = require('morgan');
 const express = require('express');
 
-const studentsRouter = require('./routes/studentsRoutes');
+const DoctorsRouter = require('./routes/DoctorsRoutes');
+const StudentsRouter = require('./routes/StudentsRoutes');
 //-------------------------------------------//
 const app = express();
 //---------------middleware------------------//
 app.use(express.json());
 app.use(morgan('dev'));
 
-app.use((req, res, next) => {
-  req.time = new Date().toISOString();
-  next();
-});
-
 app.use(express.static('public'));
 
-app.use('/api/v1/students', studentsRouter);
+app.use('/api/v1/students', StudentsRouter);
+app.use('/api/v1/doctors', DoctorsRouter);
 //-------------------------------------------//
 module.exports = app;

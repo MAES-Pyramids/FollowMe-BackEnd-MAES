@@ -1,17 +1,17 @@
 const express = require('express');
-const studentController = require('../controllers/studentController');
+const doctorController = require('../controllers/doctorController');
 //-------------------------------------------//
 const router = express.Router();
 //------------------ROUTES------------------//
 router
   .route('/')
-  .get(studentController.getAllStudents)
-  .post(studentController.createStudent);
+  .get(doctorController.getAllDoctor)
+  .post(doctorController.createDoctor);
 router
   .route('/:id')
-  .get(studentController.getStudent)
-  .patch(studentController.updateStudent)
-  .delete(studentController.deleteStudent);
+  .get(doctorController.getDoctor)
+  .patch(doctorController.updateDoctor)
+  .delete(doctorController.deleteDoctor);
 
 //-------------------------------------------//
 module.exports = router;
