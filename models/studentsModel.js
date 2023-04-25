@@ -53,7 +53,13 @@ const studentSchema = new mongoose.Schema(
       default: true,
       select: false
     },
-    doctor: {
+    proposedDoctors: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Doctor'
+      }
+    ],
+    targetDoctor: {
       type: mongoose.Schema.ObjectId,
       ref: 'Doctor'
     }
@@ -66,12 +72,15 @@ const studentSchema = new mongoose.Schema(
 //-------------Queries middleware------------//
 studentSchema.pre(/^find/, function(next) {
   this.populate({
-    path: 'doctor',
-    select: '-passwordConfirm -maxStudents'
+    path: 'targetDoctor',
+    select: '-passwordConfirm -maxStudents -__v'
   });
   next();
 });
-
+studentSchema.pre(/^find/, function(next) {
+  this.select('-passwordConfirm -role -__v');
+  next();
+});
 //--------------------Model------------------//
 const Student = mongoose.model('Student', studentSchema);
 //--------------------Export-----------------//

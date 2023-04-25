@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const Doctor = require('../../models/doctorsModel');
 const Student = require('./../../models/studentsModel');
+const Proposal = require('./../../models/proposalModel');
 //-------------------Config----------------//
 dotenv.config({ path: './config.env' });
 //--------------------DB-------------------//
@@ -25,12 +26,16 @@ const students = JSON.parse(
 const doctors = JSON.parse(
   fs.readFileSync(`${__dirname}/doctors.json`, 'utf-8')
 );
+const proposals = JSON.parse(
+  fs.readFileSync(`${__dirname}/proposals.json`, 'utf-8')
+);
 //--------------------CRUD------------------//
 // Import data into DB
 async function importData() {
   try {
     await Student.create(students);
     await Doctor.create(doctors);
+    await Proposal.create(proposals);
     console.log('Data successfully loaded!');
   } catch (err) {
     console.log(err);
@@ -42,6 +47,7 @@ async function deleteData() {
   try {
     await Student.deleteMany();
     await Doctor.deleteMany();
+    await Proposal.deleteMany();
     console.log('Data successfully deleted!');
   } catch (err) {
     console.log(err);

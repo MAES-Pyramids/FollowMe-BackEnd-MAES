@@ -1,6 +1,6 @@
 [
   {
-    "student": 1,
+    "student": "61187f3e3bfbb539f54be701",
     "doctor": "61187f3e3bfbb539f54be772",
     "title": "Impact of Social Media on Mental Health",
     "field": "Psychology",
@@ -8,7 +8,7 @@
   },
 
   {
-    "student": 2,
+    "student": "61187f3e3bfbb539f54be702",
     "doctor": "61187f3e3bfbb539f54be772",
     "title": "The Effect of Exercise on Cognitive Functioning in Older Adults",
     "field": "Gerontology",
@@ -16,7 +16,7 @@
   },
 
   {
-    "student": 3,
+    "student": "61187f3e3bfbb539f54be703",
     "doctor": "61187f3e3bfbb539f54be772",
     "title": "The Impact of Socioeconomic Status on Child Development",
     "field": "Child Psychology",
@@ -24,7 +24,7 @@
   },
 
   {
-    "student": 4,
+    "student": "61187f3e3bfbb539f54be704",
     "doctor": "61187f3e3bfbb539f54be772",
     "title": "The Effectiveness of Mindfulness-Based Interventions on Anxiety and Stress",
     "field": "Clinical Psychology",
@@ -32,7 +32,7 @@
   },
 
   {
-    "student": 5,
+    "student": "61187f3e3bfbb539f54be705",
     "doctor": "61187f3e3bfbb539f54be772",
     "title": "The Role of Parental Involvement in Child Education",
     "field": "Education",
@@ -40,42 +40,42 @@
   },
 
   {
-    "student": 6,
+    "student": "61187f3e3bfbb539f54be706",
     "doctor": "61187f3e3bfbb539f54be773",
     "title": "The Impact of Technology on Workplace Communication",
     "field": "Organizational Psychology",
     "description": "This proposal aims to investigate the impact of technology on workplace communication. The study will use qualitative data to explore the perceptions of employees regarding the use of technology in communication, and how it affects their work relationships and productivity."
   },
   {
-    "student": 7,
+    "student": "61187f3e3bfbb539f54be707",
     "doctor": "61187f3e3bfbb539f54be773",
     "title": "The effects of caffeine on memory retention",
     "field": "Neuroscience",
     "description": "This study aims to investigate the effects of caffeine on memory retention in healthy adults. Participants will be given varying doses of caffeine and tested on their memory recall abilities. Results will contribute to the understanding of how caffeine affects cognitive function."
   },
   {
-    "student": 8,
+    "student": "61187f3e3bfbb539f54be708",
     "doctor": "61187f3e3bfbb539f54be773",
     "title": "Exploring the effects of music therapy on anxiety levels in hospitalized patients",
     "field": "Psychology",
     "description": "This study aims to investigate the effects of music therapy on anxiety levels in hospitalized patients. Participants will be randomly assigned to either a music therapy group or a control group and their anxiety levels will be measured using standardized assessments. Results will contribute to the understanding of the potential benefits of music therapy for anxiety management."
   },
   {
-    "student": 9,
+    "student": "61187f3e3bfbb539f54be709",
     "doctor": "61187f3e3bfbb539f54be773",
     "title": "The impact of social media on self-esteem in adolescents",
     "field": "Social Psychology",
     "description": "This study aims to investigate the impact of social media use on self-esteem in adolescents. Participants will be asked to complete self-report measures of social media use and self-esteem, and their social media behavior will be monitored. Results will contribute to the understanding of the potential negative effects of social media on adolescent self-esteem."
   },
   {
-    "student": 10,
+    "student": "61187f3e3bfbb539f54be710",
     "doctor": "61187f3e3bfbb539f54be774",
     "title": "Investigating the effects of exercise on depression in older adults",
     "field": "Gerontology",
     "description": "This study aims to investigate the effects of exercise on depression in older adults. Participants will be randomly assigned to either an exercise group or a control group, and their depression levels will be measured using standardized assessments. Results will contribute to the understanding of the potential benefits of exercise for depression management in older adults."
   },
   {
-    "student": 11,
+    "student": "61187f3e3bfbb539f54be711",
     "doctor": "61187f3e3bfbb539f54be774",
     "title": "The relationship between sleep quality and academic performance in college students",
     "field": "Sleep Science",
@@ -83,35 +83,35 @@
   },
 
   {
-    "student": 12,
+    "student": "61187f3e3bfbb539f54be712",
     "doctor": "61187f3e3bfbb539f54be774",
     "title": "Investigating the relationship between physical activity and mental health outcomes in individuals with chronic illness",
     "field": "Rehabilitation Psychology",
     "description": "This proposal aims to examine the relationship between physical activity and mental health outcomes in individuals with chronic illnesses such as diabetes or heart disease. The study will use a mixed-methods approach to investigate the potential benefits of physical activity on anxiety, depression, and overall well-being."
   },
   {
-    "student": 13,
+    "student": "61187f3e3bfbb539f54be713",
     "doctor": "61187f3e3bfbb539f54be775",
     "title": "The impact of nutrition education on dietary habits and health outcomes in elementary school children",
     "field": "Public Health",
     "description": "This proposal aims to investigate the impact of nutrition education on dietary habits and health outcomes in elementary school children. The study will use a randomized controlled trial to compare the dietary habits and health outcomes of children who receive nutrition education with those who do not."
   },
   {
-    "student": 14,
+    "student": "61187f3e3bfbb539f54be714",
     "doctor": "61187f3e3bfbb539f54be775",
     "title": "The relationship between job satisfaction and organizational commitment in healthcare professionals",
     "field": "Organizational Psychology",
     "description": "This proposal aims to investigate the relationship between job satisfaction and organizational commitment in healthcare professionals. The study will use a survey to collect data on job satisfaction and organizational commitment and explore the potential factors that influence these variables, such as leadership and work-life balance."
   },
   {
-    "student": 15,
+    "student": "61187f3e3bfbb539f54be715",
     "doctor": "61187f3e3bfbb539f54be775",
     "title": "The impact of social support on mental health outcomes in individuals with chronic pain",
     "field": "Clinical Psychology",
     "description": "This proposal aims to investigate the impact of social support on mental health outcomes in individuals with chronic pain. The study will use a longitudinal design to examine the relationship between social support and mental health outcomes over time, and explore the potential mechanisms through which social support influences mental health."
   },
   {
-    "student": 16,
+    "student": "61187f3e3bfbb539f54be716",
     "doctor": "61187f3e3bfbb539f54be775",
     "title": "The effects of mindfulness meditation on emotion regulation in individuals with borderline personality disorder",
     "field": " Clinical Psychology",

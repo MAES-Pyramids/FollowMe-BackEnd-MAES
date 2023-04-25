@@ -37,7 +37,12 @@ const proposalSchema = new mongoose.Schema(
           required: [true, 'A rating must have a value']
         }
       }
-    ]
+    ],
+    state: {
+      type: String,
+      enum: ['pending', 'accepted', 'rejected'],
+      default: 'pending'
+    }
   },
   {
     timestamps: true
