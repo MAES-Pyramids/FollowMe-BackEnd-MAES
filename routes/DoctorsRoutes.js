@@ -1,11 +1,27 @@
 const express = require('express');
+const authController = require('../controllers/authController');
 const doctorController = require('../controllers/doctorController');
 //-------------------------------------------//
 const router = express.Router();
 //------------------ROUTES------------------//
-router.route('/:id/proposals').post(doctorController.SendDoctorProposals);
-router.route('/me/proposals').get(doctorController.GetAllProposals);
-//-------------------------------------------//
+//-------------Users Routes-----------------//
+router.post('/signup', authController.signup);
+router.post('/login', authController.login);
+router.get('/logout', authController.logout);
+// router.post('/forgotPassword', authController.forgotPassword);
+// router.patch('/resetPassword/:token', authController.resetPassword);
+//--------------Active User-----------------//
+// router.get('/Me', usersController.getMe, usersController.getUser);
+// router.patch('/UpdateMe', usersController.UpdateMe);
+// router.delete('/DeleteMe', usersController.DeleteMe);
+// router.patch('/updatePassword', authController.updatePassword);
+router
+  .route('/:id/proposal')
+  .post(authController.protect, doctorController.SendDoctorProposals);
+router
+  .route('/me/proposals')
+  .get(authController.protect, doctorController.GetAllProposals);
+//---------------Admin Routes---------------//
 router
   .route('/')
   .get(doctorController.getAllDoctor)

@@ -37,6 +37,7 @@ exports.GetAllProposals = catchAsyncError(async (req, res, next) => {
   }
   res.status(200).json({
     status: 'success',
+    length: proposals.length,
     data: {
       data: proposals
     }

@@ -1,6 +1,6 @@
 const { promisify } = require('util');
-const crypto = require('crypto');
 const JWT = require('jsonwebtoken');
+const crypto = require('crypto');
 const catchAsyncError = require('./../utils/catchAsyncError');
 const Student = require('./../models/studentsModel');
 const Doctor = require('./../models/doctorsModel');
@@ -37,7 +37,7 @@ function createAndSendToken(user, statusCode, res) {
 }
 //------------handler functions ------------//
 //-------------- Sign up
-exports.signupStudent = catchAsyncError(async (req, res, next) => {
+exports.signup = catchAsyncError(async (req, res, next) => {
   const User = req.state === 'doctor' ? Doctor : Student;
 
   const newUser = await User.create({
@@ -50,7 +50,9 @@ exports.signupStudent = catchAsyncError(async (req, res, next) => {
 });
 //-------------- Login
 exports.login = catchAsyncError(async (req, res, next) => {
-  const User = req.state === 'doctor' ? Doctor : Student;
+  let User;
+  if (req.originalUrl.startsWith('/api/v1/students')) User = Student;
+  if (req.originalUrl.startsWith('/api/v1/doctors')) User = Doctor;
 
   const { email, password } = req.body;
   // 1) Check if email and password exist
@@ -77,38 +79,38 @@ exports.logout = (req, res) => {
   res.status(200).json({ status: 'success' });
 };
 //-------------- IsLogin
-exports.isLogin = async (req, res, next) => {
-  const User = req.state === 'doctor' ? Doctor : Student;
+// exports.isLogin = async (req, res, next) => {
+//   const User = req.state === 'doctor' ? Doctor : Student;
 
-  // 1) verify token
-  if (req.cookies.jwt) {
-    try {
-      const decoded = await promisify(JWT.verify)(
-        req.cookies.jwt,
-        process.env.JWT_SECRET
-      );
-      // 2) Check if user still exists
-      const currentUser = await User.findById(decoded.id);
+//   // 1) verify token
+//   if (req.cookies.jwt) {
+//     try {
+//       const decoded = await promisify(JWT.verify)(
+//         req.cookies.jwt,
+//         process.env.JWT_SECRET
+//       );
+//       // 2) Check if user still exists
+//       const currentUser = await User.findById(decoded.id);
 
-      if (!currentUser) {
-        return next();
-      }
+//       if (!currentUser) {
+//         return next();
+//       }
 
-      // 3) Check if user changed password after the token was issued
-      if (currentUser.isPasswordChanged(decoded.iat)) {
-        return next();
-      }
+//       // 3) Check if user changed password after the token was issued
+//       if (currentUser.isPasswordChanged(decoded.iat)) {
+//         return next();
+//       }
 
-      // THERE IS A LOGGED IN USER
-      res.locals.user = currentUser;
-      req.isLogin = true;
-      return next();
-    } catch (err) {
-      return next();
-    }
-  }
-  return next();
-};
+//       // THERE IS A LOGGED IN USER
+//       res.locals.user = currentUser;
+//       req.isLogin = true;
+//       return next();
+//     } catch (err) {
+//       return next();
+//     }
+//   }
+//   return next();
+// };
 //-------------- Update Password
 exports.updatePassword = catchAsyncError(async (req, res, next) => {
   const User = req.state === 'doctor' ? Doctor : Student;
@@ -135,7 +137,8 @@ exports.protect = catchAsyncError(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
-  } else if (req.cookies.jwt) {
+  }
+  if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
 
@@ -175,87 +178,87 @@ exports.protect = catchAsyncError(async (req, res, next) => {
   next();
 });
 // ---------------restricting to roles-----------------//
-// exports.restrictTo = (...roles) => {
-//   return (req, res, next) => {
-//     if (!roles.includes(req.user.role)) {
-//       return next(
-//         new AppError('You do not have permission to perform this action', 403)
-//       );
-//     }
-//     next();
-//   };
-// };
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError('You do not have permission to perform this action', 403)
+      );
+    }
+    next();
+  };
+};
 // ---------------password Reset-----------------//
 //-------------- Forget password
-exports.forgotPassword = catchAsyncError(async (req, res, next) => {
-  const currentStudent = await Student.findOne({ email: req.body.email });
-  const currentDoctor = await Doctor.findOne({ email: req.body.email });
-  // 1) Get user based on POSTed email
+// exports.forgotPassword = catchAsyncError(async (req, res, next) => {
+//   const currentStudent = await Student.findOne({ email: req.body.email });
+//   const currentDoctor = await Doctor.findOne({ email: req.body.email });
+//   // 1) Get user based on POSTed email
 
-  if (!currentStudent && !currentDoctor) {
-    return next(new AppError('There is no user with email address', 404));
-  }
-  const user = currentStudent || currentDoctor;
-  // 2) Generate the random reset token
-  const resetToken = user.createPasswordResetToken();
-  await user.save({ validateBeforeSave: false });
+//   if (!currentStudent && !currentDoctor) {
+//     return next(new AppError('There is no user with email address', 404));
+//   }
+//   const user = currentStudent || currentDoctor;
+//   // 2) Generate the random reset token
+//   const resetToken = user.createPasswordResetToken();
+//   await user.save({ validateBeforeSave: false });
 
-  // 3) Send it to user's email
-  const resetURL = `${req.protocol}://${req.get(
-    'host'
-  )}/api/v1/users/resetPassword/${resetToken}`;
+//   // 3) Send it to user's email
+//   const resetURL = `${req.protocol}://${req.get(
+//     'host'
+//   )}/api/v1/users/resetPassword/${resetToken}`;
 
-  const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
+//   const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
 
-  try {
-    await sendEmail({
-      email: user.email,
-      subject: 'Your password reset token (valid for 10 min)',
-      message
-    });
-    res.status(200).json({
-      status: 'success',
-      message: 'Token sent to email!'
-    });
-  } catch {
-    user.passwordResetToken = undefined;
-    user.passwordResetExpires = undefined;
-    await user.save({ validateBeforeSave: false });
+//   try {
+//     await sendEmail({
+//       email: user.email,
+//       subject: 'Your password reset token (valid for 10 min)',
+//       message
+//     });
+//     res.status(200).json({
+//       status: 'success',
+//       message: 'Token sent to email!'
+//     });
+//   } catch {
+//     user.passwordResetToken = undefined;
+//     user.passwordResetExpires = undefined;
+//     await user.save({ validateBeforeSave: false });
 
-    return next(
-      new AppError('There was an error sending the email. Try again later!'),
-      500
-    );
-  }
-});
+//     return next(
+//       new AppError('There was an error sending the email. Try again later!'),
+//       500
+//     );
+//   }
+// });
 //-------------- Reset password
-exports.resetPassword = catchAsyncError(async (req, res, next) => {
-  // 1) Get user based on the token
-  const hashedToken = crypto
-    .createHash('sha256')
-    .update(req.params.token)
-    .digest('hex');
+// exports.resetPassword = catchAsyncError(async (req, res, next) => {
+//   // 1) Get user based on the token
+//   const hashedToken = crypto
+//     .createHash('sha256')
+//     .update(req.params.token)
+//     .digest('hex');
 
-  const student = await Student.findOne({
-    passwordResetToken: hashedToken,
-    passwordResetExpires: { $gt: Date.now() }
-  });
-  const doctor = await Doctor.findOne({
-    passwordResetToken: hashedToken,
-    passwordResetExpires: { $gt: Date.now() }
-  });
+//   const student = await Student.findOne({
+//     passwordResetToken: hashedToken,
+//     passwordResetExpires: { $gt: Date.now() }
+//   });
+//   const doctor = await Doctor.findOne({
+//     passwordResetToken: hashedToken,
+//     passwordResetExpires: { $gt: Date.now() }
+//   });
 
-  // 2) If token has not expired, and there is user, set the new password
-  if (!student && !doctor) {
-    return next(new AppError('Token is invalid or has expired', 400));
-  }
-  const user = student || doctor;
-  // 3) Update changedPasswordAt property for the user
-  user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
-  user.passwordResetToken = undefined;
-  user.passwordResetExpires = undefined;
-  await user.save();
-  // 4) Log the user in, send JWT
-  createAndSendToken(user, 200, res);
-});
+//   // 2) If token has not expired, and there is user, set the new password
+//   if (!student && !doctor) {
+//     return next(new AppError('Token is invalid or has expired', 400));
+//   }
+//   const user = student || doctor;
+//   // 3) Update changedPasswordAt property for the user
+//   user.password = req.body.password;
+//   user.passwordConfirm = req.body.passwordConfirm;
+//   user.passwordResetToken = undefined;
+//   user.passwordResetExpires = undefined;
+//   await user.save();
+//   // 4) Log the user in, send JWT
+//   createAndSendToken(user, 200, res);
+// });
