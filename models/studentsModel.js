@@ -42,6 +42,16 @@ const studentSchema = new mongoose.Schema(
         message: 'Passwords are not the same!'
       }
     },
+    proposedDoctors: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Doctor'
+      }
+    ],
+    targetDoctor: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Doctor'
+    },
     passwordChangedAt: {
       type: Date,
       select: false
@@ -52,16 +62,6 @@ const studentSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
       select: false
-    },
-    proposedDoctors: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Doctor'
-      }
-    ],
-    targetDoctor: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Doctor'
     }
   },
   {
