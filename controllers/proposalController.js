@@ -1,49 +1,67 @@
-const catchAsyncError = require('./../utils/catchAsyncError');
+const catchAsyncError = require('../utils/catchAsyncError');
 const Proposal = require('../models/proposalModel');
 const Student = require('../models/studentsModel');
-const AppError = require('./../utils/appError');
+const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
-//------------handler functions ------------//
+
+// Helper functions
+async function getProposalById(id, next) {
+  const proposal = await Proposal.findById(id);
+
+  if (!proposal) {
+    return next(new AppError(`No proposal found with that ID`, 404));
+  }
+
+  return proposal;
+}
+
+function checkDoctorIsAuthorized(proposal, userId, next) {
+  if (JSON.stringify(proposal.doctor) !== JSON.stringify(userId)) {
+    return next(
+      new AppError(
+        `Sorry, you are not the doctor who can perform this action`,
+        404
+      )
+    );
+  }
+}
+
+// Handler functions
 exports.getProposal = factory.getOne(Proposal);
 exports.getAllProposals = factory.getAll(Proposal);
 exports.createProposal = factory.createOne(Proposal);
 exports.updateProposal = factory.updateOne(Proposal);
 exports.deleteProposal = factory.deleteOne(Proposal);
-//------------custom functions ------------//
+
+// Custom functions
 exports.acceptProposal = catchAsyncError(async (req, res, next) => {
-  const proposal = await Proposal.findById(req.params.id);
-  if (!proposal) {
-    return next(new AppError(`No proposal found with that ID`, 404));
-  }
+  const proposal = await getProposalById(req.params.id, next);
+
   if (proposal.state !== 'evaluated') {
     return next(
       new AppError(
-        `sorry, Proposal must be evaluated first before it could be accepted`,
+        `Sorry, proposal must be evaluated first before it can be accepted`,
         404
       )
     );
   }
-  if (JSON.stringify(proposal.doctor) !== JSON.stringify(req.user.id)) {
-    return next(
-      new AppError(
-        `sorry, You are not the doctor who can accept this proposal`,
-        404
-      )
-    );
-  }
-  // set the doctor Id in the student proposedDoctors array
-  const student = await Student.findByIdAndUpdate(
+
+  checkDoctorIsAuthorized(proposal, req.user.id, next);
+
+  // Set the doctor Id in the student proposedDoctors array
+  await Student.findByIdAndUpdate(
     proposal.student,
     {
       $push: { proposedDoctors: proposal.doctor }
     },
-    { new: true }
+    { new: true, runValidators: true }
   );
-  await student.save({ validateBeforeSave: false });
-  // change the proposal state to accepted
+
+  // Change the proposal state to accepted
   proposal.state = 'accepted';
   await proposal.save();
-  // send the response
+
+  // Send the response
   res.status(200).json({
     status: 'success',
     data: {
@@ -51,26 +69,21 @@ exports.acceptProposal = catchAsyncError(async (req, res, next) => {
     }
   });
 });
+
 exports.rejectProposal = catchAsyncError(async (req, res, next) => {
-  const proposal = await Proposal.findById(req.params.id);
-  if (!proposal) {
-    return next(new AppError(`No proposal found with that ID`, 404));
-  }
+  const proposal = await getProposalById(req.params.id, next);
+
   if (proposal.state !== 'pending') {
     return next(new AppError(`This proposal isn't pending anymore`, 404));
   }
-  if (JSON.stringify(proposal.doctor) !== JSON.stringify(req.user.id)) {
-    return next(
-      new AppError(
-        `sorry, You are not the doctor who can reject this proposal`,
-        404
-      )
-    );
-  }
-  // change the proposal state to rejected
+
+  checkDoctorIsAuthorized(proposal, req.user.id, next);
+
+  // Change the proposal state to rejected
   proposal.state = 'rejected';
   await proposal.save();
-  // send the response
+
+  // Send the response
   res.status(200).json({
     status: 'success',
     data: {
@@ -78,22 +91,16 @@ exports.rejectProposal = catchAsyncError(async (req, res, next) => {
     }
   });
 });
+
 exports.evaluateProposal = catchAsyncError(async (req, res, next) => {
-  const proposal = await Proposal.findById(req.params.id);
-  if (!proposal) {
-    return next(new AppError(`No proposal found with that ID`, 404));
-  }
+  const proposal = await getProposalById(req.params.id, next);
+
   if (proposal.state !== 'pending') {
     return next(new AppError(`This proposal isn't pending anymore`, 404));
   }
-  if (JSON.stringify(proposal.doctor) !== JSON.stringify(req.user.id)) {
-    return next(
-      new AppError(
-        `sorry, You are not the doctor who can reject this proposal`,
-        404
-      )
-    );
-  }
+
+  checkDoctorIsAuthorized(proposal, req.user.id, next);
+
   proposal.ratings = {
     clearness: req.body.clearness,
     spilling: req.body.spilling,
@@ -103,7 +110,8 @@ exports.evaluateProposal = catchAsyncError(async (req, res, next) => {
   };
   proposal.state = 'evaluated';
   await proposal.save();
-  // send the response
+
+  // Send the response
   res.status(200).json({
     status: 'success',
     data: {
