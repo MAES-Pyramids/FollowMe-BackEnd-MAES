@@ -13,6 +13,21 @@ exports.updateStudent = factory.updateOne(Student);
 exports.deleteStudent = factory.deleteOne(Student);
 
 //------------custom functions ------------//
+exports.getAllProposals = catchAsync(async (req, res, next) => {
+  const proposals = await Proposal.find({ student: req.user.id });
+  if (!proposals) {
+    return next(new AppError(`No proposals found with that ID`, 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    length: proposals.length,
+    data: {
+      data: proposals
+    }
+  });
+});
+
 exports.sendDoctorProposals = catchAsync(async (req, res, next) => {
   const doctor = await Doctor.findById(req.params.id);
   if (!doctor) {
@@ -45,35 +60,17 @@ exports.sendDoctorProposals = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getAllProposals = catchAsync(async (req, res, next) => {
-  const proposals = await Proposal.find({ student: req.user.id });
-  if (!proposals) {
-    return next(new AppError(`No proposals found with that ID`, 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    length: proposals.length,
-    data: {
-      data: proposals
-    }
-  });
-});
-
-exports.doctorSubmit = catchAsync(async (req, res, next) => {
+exports.submitDoctor = catchAsync(async (req, res, next) => {
   const proposal = await Proposal.findById(req.params.proposalID);
   if (!proposal) {
     return next(
-      new AppError(`Sorry, this proposal is no longer available`, 404)
+      new AppError(`Sorry, this proposal isn't available anymore`, 404)
     );
   }
 
   if (proposal.state !== 'accepted') {
     return next(
-      new AppError(
-        `Sorry, proposal must be accepted first before it can be submitted`,
-        404
-      )
+      new AppError(`Sorry, proposal must be accepted by the doctor first`, 404)
     );
   }
 
@@ -85,9 +82,7 @@ exports.doctorSubmit = catchAsync(async (req, res, next) => {
 
   const student = await Student.findById(req.user.id);
   if (student.targetDoctor) {
-    return next(
-      new AppError(`Sorry, you have already submitted a proposal`, 404)
-    );
+    return next(new AppError(`Sorry, you have already chosen a doctor`, 404));
   }
 
   student.targetDoctor = proposal.doctor;

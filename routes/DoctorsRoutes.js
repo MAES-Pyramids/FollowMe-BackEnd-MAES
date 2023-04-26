@@ -5,7 +5,11 @@ const studentController = require('../controllers/studentController');
 //-------------------------------------------//
 const router = express.Router();
 //------------------ROUTES------------------//
-//-------------Users Routes-----------------//
+const authDoctorMiddleware = [
+  authController.protect,
+  authController.restrictTo('Doctor')
+];
+//--authDoctorMiddleware
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
@@ -24,7 +28,11 @@ router.post(
 );
 router
   .route('/me/proposals')
-  .get(authController.protect, doctorController.GetAllProposals);
+  .get(...authDoctorMiddleware, doctorController.GetAllProposals);
+
+router
+  .route('/me/students')
+  .get(...authDoctorMiddleware, doctorController.GetMyStudents);
 //---------------Admin Routes---------------//
 router
   .route('/')

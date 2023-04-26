@@ -23,7 +23,7 @@ router.get(
 router.get(
   '/:proposalID/doctorSubmit',
   authController.protect,
-  studentController.doctorSubmit
+  studentController.submitDoctor
 );
 //---------------Admin Routes---------------//
 router
