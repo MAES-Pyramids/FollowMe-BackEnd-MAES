@@ -2,7 +2,6 @@ const catchAsyncError = require('../utils/catchAsyncError');
 const Proposal = require('../models/proposalModel');
 const Student = require('../models/studentsModel');
 const AppError = require('../utils/appError');
-const factory = require('./handlerFactory');
 
 // Helper functions
 async function getProposalById(id, next) {
@@ -25,13 +24,6 @@ function checkDoctorIsAuthorized(proposal, userId, next) {
     );
   }
 }
-
-// Handler functions
-exports.getProposal = factory.getOne(Proposal);
-exports.getAllProposals = factory.getAll(Proposal);
-exports.createProposal = factory.createOne(Proposal);
-exports.updateProposal = factory.updateOne(Proposal);
-exports.deleteProposal = factory.deleteOne(Proposal);
 
 // Custom functions
 exports.acceptProposal = catchAsyncError(async (req, res, next) => {

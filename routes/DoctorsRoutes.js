@@ -2,14 +2,19 @@ const express = require('express');
 const authController = require('../controllers/authController');
 const doctorController = require('../controllers/doctorController');
 const studentController = require('../controllers/studentController');
+const unitCoordinatorController = require('../controllers/unitCoordinatorController');
+
 //-------------------------------------------//
 const router = express.Router();
 //------------------ROUTES------------------//
-const authDoctorMiddleware = [
+const doctorAuthDoctorMiddleware = [
   authController.protect,
   authController.restrictTo('Doctor')
 ];
-//--authDoctorMiddleware
+// const studentAuthDoctorMiddleware = [
+//   authController.protect,
+//   authController.restrictTo('Student')
+// ];
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
@@ -28,20 +33,21 @@ router.post(
 );
 router
   .route('/me/proposals')
-  .get(...authDoctorMiddleware, doctorController.GetAllProposals);
+  .get(...doctorAuthDoctorMiddleware, doctorController.GetAllProposals);
 
 router
   .route('/me/students')
-  .get(...authDoctorMiddleware, doctorController.GetMyStudents);
+  .get(...doctorAuthDoctorMiddleware, doctorController.GetMyStudents);
 //---------------Admin Routes---------------//
+router.use(authController.protect, authController.restrictTo('SuperDoctor'));
 router
   .route('/')
-  .get(doctorController.getAllDoctor)
-  .post(doctorController.createDoctor);
+  .get(unitCoordinatorController.getAllDoctor)
+  .post(unitCoordinatorController.createDoctor);
 router
   .route('/:id')
-  .get(doctorController.getDoctor)
-  .patch(doctorController.updateDoctor)
-  .delete(doctorController.deleteDoctor);
+  .get(unitCoordinatorController.getDoctor)
+  .patch(unitCoordinatorController.updateDoctor)
+  .delete(unitCoordinatorController.deleteDoctor);
 //-------------------------------------------//
 module.exports = router;

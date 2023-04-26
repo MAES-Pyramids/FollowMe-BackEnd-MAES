@@ -1,17 +1,8 @@
-const factory = require('./handlerFactory');
 const AppError = require('./../utils/appError');
 const Doctor = require('../models/doctorsModel');
 const Student = require('../models/studentsModel');
 const Proposal = require('../models/proposalModel');
 const catchAsync = require('./../utils/catchAsyncError');
-
-//------------handler functions ------------//
-exports.getStudent = factory.getOne(Student);
-exports.getAllStudents = factory.getAll(Student);
-exports.createStudent = factory.createOne(Student);
-exports.updateStudent = factory.updateOne(Student);
-exports.deleteStudent = factory.deleteOne(Student);
-
 //------------custom functions ------------//
 exports.getAllProposals = catchAsync(async (req, res, next) => {
   const proposals = await Proposal.find({ student: req.user.id });

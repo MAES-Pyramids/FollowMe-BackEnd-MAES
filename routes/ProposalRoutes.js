@@ -1,42 +1,44 @@
 const express = require('express');
 const authController = require('../controllers/authController');
 const proposalController = require('../controllers/proposalController');
+const unitCoordinatorController = require('../controllers/unitCoordinatorController');
 //-------------------------------------------//
 const router = express.Router();
 //------------------ROUTES------------------//
 //-------------Users Routes-----------------//
 //--------------Active User-----------------//
-const authDoctorMiddleware = [
+const doctorAuthDoctorMiddleware = [
   authController.protect,
   authController.restrictTo('Doctor')
 ];
 
 router.patch(
   '/:id/acceptProposal',
-  ...authDoctorMiddleware,
+  ...doctorAuthDoctorMiddleware,
   proposalController.acceptProposal
 );
 
 router.patch(
   '/:id/rejectProposal',
-  ...authDoctorMiddleware,
+  ...doctorAuthDoctorMiddleware,
   proposalController.rejectProposal
 );
 
 router.post(
   '/:id/evaluateProposal',
-  ...authDoctorMiddleware,
+  ...doctorAuthDoctorMiddleware,
   proposalController.evaluateProposal
 );
 //---------------Admin Routes---------------//
+router.use(authController.protect, authController.restrictTo('SuperDoctor'));
 router
   .route('/')
-  .get(proposalController.getAllProposals)
-  .post(proposalController.createProposal);
+  .get(unitCoordinatorController.getAllProposals)
+  .post(unitCoordinatorController.createProposal);
 router
   .route('/:id')
-  .get(proposalController.getProposal)
-  .patch(proposalController.updateProposal)
-  .delete(proposalController.deleteProposal);
+  .get(unitCoordinatorController.getProposal)
+  .patch(unitCoordinatorController.updateProposal)
+  .delete(unitCoordinatorController.deleteProposal);
 //-------------------------------------------//
 module.exports = router;

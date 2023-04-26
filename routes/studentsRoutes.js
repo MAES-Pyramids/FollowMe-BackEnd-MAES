@@ -1,6 +1,7 @@
 const express = require('express');
 const authController = require('../controllers/authController');
 const studentController = require('../controllers/studentController');
+const unitCoordinatorController = require('../controllers/unitCoordinatorController');
 //-------------------------------------------//
 const router = express.Router();
 //------------------ROUTES------------------//
@@ -26,14 +27,15 @@ router.get(
   studentController.submitDoctor
 );
 //---------------Admin Routes---------------//
+router.use(authController.protect, authController.restrictTo('SuperDoctor'));
 router
   .route('/')
-  .get(studentController.getAllStudents)
-  .post(studentController.createStudent);
+  .get(unitCoordinatorController.getAllStudents)
+  .post(unitCoordinatorController.createStudent);
 router
   .route('/:id')
-  .get(studentController.getStudent)
-  .patch(studentController.updateStudent)
-  .delete(studentController.deleteStudent);
+  .get(unitCoordinatorController.getStudent)
+  .patch(unitCoordinatorController.updateStudent)
+  .delete(unitCoordinatorController.deleteStudent);
 //-------------------------------------------//
 module.exports = router;
