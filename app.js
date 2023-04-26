@@ -19,7 +19,6 @@ app.use(cookieParser());
 app.use('/api/v1/proposal', ProposalRouter);
 app.use('/api/v1/students', StudentsRouter);
 app.use('/api/v1/doctors', DoctorsRouter);
-
 //-------------------------------------------//
 // Error Handling Middleware
 app.use(globalErrorHandler);

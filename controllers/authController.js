@@ -1,11 +1,11 @@
-const { promisify } = require('util');
+// const crypto = require('crypto');
 const JWT = require('jsonwebtoken');
-const crypto = require('crypto');
-const catchAsyncError = require('./../utils/catchAsyncError');
-const Student = require('./../models/studentsModel');
-const Doctor = require('./../models/doctorsModel');
+const { promisify } = require('util');
+// const sendEmail = require('./../utils/email');
 const AppError = require('./../utils/appError');
-const sendEmail = require('./../utils/email');
+const Doctor = require('./../models/doctorsModel');
+const Student = require('./../models/studentsModel');
+const catchAsyncError = require('./../utils/catchAsyncError');
 //-----------------JWT-----------------------//
 function signToken(id) {
   return JWT.sign({ id: id }, process.env.JWT_SECRET, {
