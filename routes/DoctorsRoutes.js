@@ -1,6 +1,7 @@
 const express = require('express');
 const authController = require('../controllers/authController');
 const doctorController = require('../controllers/doctorController');
+const studentController = require('../controllers/studentController');
 //-------------------------------------------//
 const router = express.Router();
 //------------------ROUTES------------------//
@@ -15,9 +16,12 @@ router.get('/logout', authController.logout);
 // router.patch('/UpdateMe', usersController.UpdateMe);
 // router.delete('/DeleteMe', usersController.DeleteMe);
 // router.patch('/updatePassword', authController.updatePassword);
-router
-  .route('/:id/proposal')
-  .post(authController.protect, doctorController.SendDoctorProposals);
+router.post(
+  '/:id/proposal',
+  authController.protect,
+  authController.restrictTo('Student'),
+  studentController.sendDoctorProposals
+);
 router
   .route('/me/proposals')
   .get(authController.protect, doctorController.GetAllProposals);

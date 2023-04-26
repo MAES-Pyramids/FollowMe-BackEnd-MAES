@@ -15,9 +15,16 @@ router.get('/logout', authController.logout);
 // router.patch('/UpdateMe', usersController.UpdateMe);
 // router.delete('/DeleteMe', usersController.DeleteMe);
 // router.patch('/updatePassword', authController.updatePassword);
-router
-  .route('/me/proposals')
-  .get(authController.protect, studentController.GetAllProposals);
+router.get(
+  '/me/proposals',
+  authController.protect,
+  studentController.getAllProposals
+);
+router.get(
+  '/:proposalID/doctorSubmit',
+  authController.protect,
+  studentController.doctorSubmit
+);
 //---------------Admin Routes---------------//
 router
   .route('/')

@@ -29,30 +29,35 @@ const proposalSchema = new mongoose.Schema(
         type: Number,
         min: 0,
         max: 5,
+        default: 0,
         required: [true, 'Sorry, you must provide a rating']
       },
       spilling: {
         type: Number,
         min: 0,
         max: 5,
+        default: 0,
         required: [true, 'Sorry, you must provide a rating']
       },
       style: {
         type: Number,
         min: 0,
         max: 5,
+        default: 0,
         required: [true, 'Sorry, you must provide a rating']
       },
       technicalKnowledge: {
         type: Number,
         min: 0,
         max: 5,
+        default: 0,
         required: [true, 'Sorry, you must provide a rating']
       },
       overall: {
         type: Number,
         min: 0,
         max: 5,
+        default: 0,
         required: [true, 'Sorry, you must provide a rating']
       }
     },
