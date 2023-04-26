@@ -22,8 +22,8 @@ const studentSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['normal', 'second'],
-      default: 'normal'
+      enum: ['Student', 'SuperStudent'],
+      default: 'Student'
     },
     password: {
       type: 'string',
@@ -115,10 +115,6 @@ studentSchema.pre(/^find/, function(next) {
   });
   next();
 });
-// studentSchema.pre(/^find/, function(next) {
-//   this.select('-passwordConfirm -role -__v');
-//   next();
-// });
 //--------------------Model------------------//
 const Student = mongoose.model('Student', studentSchema);
 //--------------------Export-----------------//

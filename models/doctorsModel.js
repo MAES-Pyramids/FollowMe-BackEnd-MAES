@@ -15,10 +15,14 @@ const doctorSchema = new mongoose.Schema(
       lowercase: true,
       validate: [validator.isEmail, 'Please provide a valid email']
     },
-    maxStudents: {
-      type: Number,
-      required: [true, 'A doctor must have a maximum number of students'],
-      min: 1
+    photo: {
+      type: 'string',
+      default: 'default.jpg'
+    },
+    role: {
+      type: String,
+      enum: ['Doctor', 'SuperDoctor'],
+      default: 'Doctor'
     },
     password: {
       type: String,
@@ -36,6 +40,11 @@ const doctorSchema = new mongoose.Schema(
         },
         message: 'Passwords are not the same!'
       }
+    },
+    maxStudents: {
+      type: Number,
+      required: [true, 'A doctor must have a maximum number of students'],
+      min: 1
     },
     passwordChangedAt: {
       type: Date,

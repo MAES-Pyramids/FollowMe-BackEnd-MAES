@@ -6,18 +6,29 @@ const router = express.Router();
 //------------------ROUTES------------------//
 //-------------Users Routes-----------------//
 //--------------Active User-----------------//
+const authDoctorMiddleware = [
+  authController.protect,
+  authController.restrictTo('Doctor')
+];
+
 router.patch(
   '/:id/acceptProposal',
-  authController.protect,
+  ...authDoctorMiddleware,
   proposalController.acceptProposal
 );
+
 router.patch(
   '/:id/rejectProposal',
-  authController.protect,
+  ...authDoctorMiddleware,
   proposalController.rejectProposal
 );
-//---------------Admin Routes---------------//
 
+router.post(
+  '/:id/evaluateProposal',
+  ...authDoctorMiddleware,
+  proposalController.evaluateProposal
+);
+//---------------Admin Routes---------------//
 router
   .route('/')
   .get(proposalController.getAllProposals)

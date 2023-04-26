@@ -73,3 +73,20 @@ exports.rejectProposal = catchAsyncError(async (req, res, next) => {
     }
   });
 });
+exports.evaluateProposal = catchAsyncError(async (req, res, next) => {
+  const proposal = await Proposal.findById(req.params.id);
+  if (!proposal) {
+    return next(new AppError(`No proposal found with that ID`, 404));
+  }
+  if (proposal.state !== 'pending') {
+    return next(new AppError(`This proposal isn't pending anymore`, 404));
+  }
+  if (JSON.stringify(proposal.doctor) !== JSON.stringify(req.user.id)) {
+    return next(
+      new AppError(
+        `sorry, You are not the doctor who can reject this proposal`,
+        404
+      )
+    );
+  }
+});
