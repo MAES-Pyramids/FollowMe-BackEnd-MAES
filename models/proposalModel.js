@@ -24,23 +24,41 @@ const proposalSchema = new mongoose.Schema(
       type: String,
       required: [true, 'A proposal must have a description']
     },
-    ratings: [
-      {
-        criteria: {
-          type: String,
-          required: [true, 'A rating must have a criteria']
-        },
-        value: {
-          type: Number,
-          min: 0,
-          max: 10,
-          required: [true, 'A rating must have a value']
-        }
+    ratings: {
+      clearness: {
+        type: Number,
+        min: 0,
+        max: 5,
+        required: [true, 'Sorry, you must provide a rating']
+      },
+      spilling: {
+        type: Number,
+        min: 0,
+        max: 5,
+        required: [true, 'Sorry, you must provide a rating']
+      },
+      style: {
+        type: Number,
+        min: 0,
+        max: 5,
+        required: [true, 'Sorry, you must provide a rating']
+      },
+      technicalKnowledge: {
+        type: Number,
+        min: 0,
+        max: 5,
+        required: [true, 'Sorry, you must provide a rating']
+      },
+      overall: {
+        type: Number,
+        min: 0,
+        max: 5,
+        required: [true, 'Sorry, you must provide a rating']
       }
-    ],
+    },
     state: {
       type: String,
-      enum: ['pending', 'accepted', 'rejected'],
+      enum: ['pending', 'evaluated', 'accepted', 'rejected'],
       default: 'pending'
     }
   },

@@ -15,8 +15,13 @@ exports.acceptProposal = catchAsyncError(async (req, res, next) => {
   if (!proposal) {
     return next(new AppError(`No proposal found with that ID`, 404));
   }
-  if (proposal.state !== 'pending' || proposal.state === 'rejected') {
-    return next(new AppError(`This proposal is already accepted`, 404));
+  if (proposal.state !== 'evaluated') {
+    return next(
+      new AppError(
+        `sorry, Proposal must be evaluated first before it could be accepted`,
+        404
+      )
+    );
   }
   if (JSON.stringify(proposal.doctor) !== JSON.stringify(req.user.id)) {
     return next(
@@ -89,4 +94,20 @@ exports.evaluateProposal = catchAsyncError(async (req, res, next) => {
       )
     );
   }
+  proposal.ratings = {
+    clearness: req.body.clearness,
+    spilling: req.body.spilling,
+    style: req.body.style,
+    technicalKnowledge: req.body.technicalKnowledge,
+    overall: req.body.overall
+  };
+  proposal.state = 'evaluated';
+  await proposal.save();
+  // send the response
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: proposal
+    }
+  });
 });
