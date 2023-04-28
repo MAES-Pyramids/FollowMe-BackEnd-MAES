@@ -3,7 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const StudentsRouter = require('./routes/StudentsRoutes');
+const StudentsRouter = require('./routes/studentsRoutes');
 const ProposalRouter = require('./routes/ProposalRoutes');
 const DoctorsRouter = require('./routes/DoctorsRoutes');
 
