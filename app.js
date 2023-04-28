@@ -1,6 +1,7 @@
 const morgan = require('morgan');
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const DoctorsRouter = require('./routes/DoctorsRoutes');
 const StudentsRouter = require('./routes/StudentsRoutes');
@@ -10,6 +11,9 @@ const globalErrorHandler = require('./controllers/errorsController');
 //-------------------------------------------//
 const app = express();
 //---------------middleware------------------//
+app.use(cors());
+app.options('*', cors());
+
 app.use(express.json());
 app.use(morgan('dev'));
 
