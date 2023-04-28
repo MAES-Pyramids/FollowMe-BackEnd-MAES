@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const DoctorsRouter = require('./routes/DoctorsRoutes');
-const StudentsRouter = require('./routes/StudentsRoutes');
+// const StudentsRouter = require('./routes/StudentsRoutes');
 const ProposalRouter = require('./routes/ProposalRoutes');
 
 const globalErrorHandler = require('./controllers/errorsController');
