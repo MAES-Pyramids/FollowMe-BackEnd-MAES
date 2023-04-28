@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
 
+global.appRoot = path.resolve(__dirname);
 //-------------------Config----------------//
 dotenv.config({ path: './config.env' });
 //--------------------DB-------------------//
