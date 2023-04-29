@@ -39,11 +39,11 @@ router
   .route('/me/students')
   .get(...doctorAuthDoctorMiddleware, doctorController.GetMyStudents);
 //---------------Admin Routes---------------//
-router.use(authController.protect, authController.restrictTo('SuperDoctor'));
 router
   .route('/')
   .get(unitCoordinatorController.getAllDoctor)
   .post(unitCoordinatorController.createDoctor);
+router.use(authController.protect, authController.restrictTo('SuperDoctor'));
 router
   .route('/:id')
   .get(unitCoordinatorController.getDoctor)
